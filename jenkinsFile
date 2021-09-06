@@ -15,20 +15,19 @@ pipeline {
         }
         stage('unit-test') { 
             steps {
-                scho "Running JUnit Tests.";
-                dir ;
+                echo "Running JUnit Tests.";
                 bat 'Unit.bat'
             }
         }
         stage('Qualitz-Gate') { 
             steps {
-                scho "Verifying Quality gates.";
+                echo "Verifying Quality gates.";
                  bat 'Quality.bat'
             }
         }
         stage('Deploy') { 
             steps {
-                scho "Deploying to stages Env for more details.";
+                echo "Deploying to stages Env for more details.";
                  bat 'Deploy.bat'
             }
         }
