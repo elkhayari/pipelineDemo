@@ -1,0 +1,36 @@
+pipeline {
+    agent any 
+    stages {
+        stage('Git-Checkout') { 
+            steps {
+                echo "Checking out from GitHUB";
+                git 'https://github.com/elkhayari/pipelineDemo.git'
+            }
+        }
+        stage('Build') { 
+            steps {
+                echo "Building the checked-out project";
+                bat label: '', script: 'Build.bat'
+            }
+        }
+        stage('unit-test') { 
+            steps {
+                scho "Running JUnit Tests.";
+                dir ;
+                bat 'Unit.bat'
+            }
+        }
+        stage('Qualitz-Gate') { 
+            steps {
+                scho "Verifying Quality gates.";
+                 bat 'Quality.bat'
+            }
+        }
+        stage('Deploy') { 
+            steps {
+                scho "Deploying to stages Env for more details.";
+                 bat 'Deploy.bat'
+            }
+        }
+    }
+}
