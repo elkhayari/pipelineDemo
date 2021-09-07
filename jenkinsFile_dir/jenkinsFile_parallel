@@ -1,0 +1,41 @@
+pipeline {
+    agent any
+    stages {
+        stage('Non-Parallel Stage') {
+             agent{
+                label "master"
+             }
+             steps {
+                 echo "This step will be executed first"
+             }
+        }
+        
+       
+        stage('Run Parallel Tests') {
+            parallel {
+                stage('Test1 on slave1'){
+                    agent {
+                        label "slave1"
+                    }
+                    steps{
+                        echo "Test_1 on slave1"
+                    }
+                }
+                
+                 stage('Test2 on slave1'){
+                    agent {
+                        label "slave1"
+                    }
+                    steps{
+                         echo "Test_2 on slave1"
+                    }
+                }
+            }// end Parallel
+        
+        }// end stage 2
+       
+        
+    }// end stages
+
+    
+} // end pipeline
