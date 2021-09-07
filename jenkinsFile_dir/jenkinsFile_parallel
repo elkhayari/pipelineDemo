@@ -19,6 +19,7 @@ pipeline {
                     }
                     steps{
                         echo "Test_1 on slave1"
+						sleep 3
                     }
                 }
                 
